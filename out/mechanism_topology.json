@@ -1,0 +1,12 @@
+[
+  {"mechanism":"Synergistic","nodes":725,"edges":8994,"gini":0.594,"top10_endpoint_share_pct":38.1,"giant_component_pct":99.4},
+  {"mechanism":"MetabolismInhibition","nodes":514,"edges":3785,"gini":0.611,"top10_endpoint_share_pct":43.1,"giant_component_pct":99.2},
+  {"mechanism":"ProteinBinding","nodes":234,"edges":676,"gini":0.578,"top10_endpoint_share_pct":44.2,"giant_component_pct":91.0},
+  {"mechanism":"MetabolismInduction","nodes":204,"edges":525,"gini":0.617,"top10_endpoint_share_pct":51.6,"giant_component_pct":99.0},
+  {"mechanism":"Additive","nodes":353,"edges":406,"gini":0.407,"top10_endpoint_share_pct":32.0,"giant_component_pct":10.2},
+  {"mechanism":"TransporterInhibition","nodes":161,"edges":259,"gini":0.502,"top10_endpoint_share_pct":39.6,"giant_component_pct":96.3},
+  {"mechanism":"Competition","nodes":72,"edges":80,"gini":0.424,"top10_endpoint_share_pct":33.8,"giant_component_pct":45.8},
+  {"mechanism":"MultiPathways","nodes":43,"edges":46,"gini":0.398,"top10_endpoint_share_pct":30.4,"giant_component_pct":86.0},
+  {"mechanism":"Pharmacogenetic","nodes":43,"edges":42,"gini":0.377,"top10_endpoint_share_pct":32.1,"giant_component_pct":39.5},
+  {"mechanism":"TransporterInduction","nodes":30,"edges":23,"gini":0.297,"top10_endpoint_share_pct":32.6,"giant_component_pct":26.7}
+]
