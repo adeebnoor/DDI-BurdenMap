@@ -1,0 +1,28 @@
+{
+  "title": "DDI-BurdenMap: reproducible mapping of drug-drug interaction burden across candidate and curated networks",
+  "upload_type": "software",
+  "description": "Reproducibility code, redistributable analytical inputs, aggregate outputs, figures, and manuscript materials for DDI-BurdenMap, a severity- and mechanism-aware network analysis of where drug-drug interaction burden concentrates. DDInter source and processed pair-level files are not redistributed; the included preparation script reconstructs the analytical edge list locally from DDInter public downloads.",
+  "creators": [
+    {
+      "name": "Noor, Adeeb",
+      "affiliation": "King Abdulaziz University"
+    }
+  ],
+  "version": "1.0.0",
+  "keywords": [
+    "drug-drug interactions",
+    "medication safety",
+    "network pharmacology",
+    "pharmacovigilance",
+    "clinical decision support",
+    "reproducibility"
+  ],
+  "access_right": "open",
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/adeebnoor/DDI-BurdenMap",
+      "relation": "isSupplementTo",
+      "scheme": "url"
+    }
+  ]
+}
