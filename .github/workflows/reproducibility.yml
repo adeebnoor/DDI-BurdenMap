@@ -1,0 +1,30 @@
+name: reproducibility-smoke-test
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "code/**"
+      - "data/source/**"
+      - "requirements.txt"
+  pull_request:
+    paths:
+      - "code/**"
+      - "data/source/**"
+      - "requirements.txt"
+
+jobs:
+  core-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - name: Reconstruct and verify redistributable inputs
+        run: python code/bootstrap_inputs.py
+      - run: python code/candidate_network_analysis.py data/d3_candidate_ddi_pairs.csv
+      - run: python code/confirmed_network_analysis.py data/GoldD3R.txt
+      - run: python code/mechanism_stratified_analysis.py data/GoldD3R.txt out/mechanism_topology.csv out/mechanism_topology.json
+      - run: python code/reference_network_powerlaw.py data/GoldD3R.txt
