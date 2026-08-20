@@ -1,0 +1,9 @@
+# Pinned environment — end-to-end verification environment for all reported values
+# Python 3.11.15
+networkx==3.6.1
+powerlaw==2.0.0
+python-louvain==0.16
+numpy==2.4.4
+scipy==1.17.1
+pandas==3.0.2
+matplotlib>=3.8
