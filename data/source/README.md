@@ -1,0 +1,1 @@
+These deterministic gzip+Base64 fragments reconstruct the two redistributable fixed analytical inputs. Run `python code/bootstrap_inputs.py` from the repository root. The script verifies the reconstructed files against archived SHA-256 digests before analysis. DDInter source or pair-level derivative files are intentionally not stored here; see `DATA_LICENSE_NOTICE.md`.
