@@ -1,0 +1,11 @@
+mechanism,nodes,edges,gini,top10_endpoint_share_pct,giant_component_pct
+Synergistic,725,8994,0.594,38.1,99.4
+MetabolismInhibition,514,3785,0.611,43.1,99.2
+ProteinBinding,234,676,0.578,44.2,91.0
+MetabolismInduction,204,525,0.617,51.6,99.0
+Additive,353,406,0.407,32.0,10.2
+TransporterInhibition,161,259,0.502,39.6,96.3
+Competition,72,80,0.424,33.8,45.8
+MultiPathways,43,46,0.398,30.4,86.0
+Pharmacogenetic,43,42,0.377,32.1,39.5
+TransporterInduction,30,23,0.297,32.6,26.7
