@@ -1,0 +1,1 @@
+Manuscript-facing source and submission materials are versioned here after final QA. The journal submission ZIP remains the authoritative upload package.
