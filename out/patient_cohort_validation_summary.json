@@ -1,26 +1,38 @@
 {
-  "analysis_version": "Frontiers resubmission validation",
+  "analysis_version": "Frontiers resubmission validation — final audit 2026-08-22",
   "seed": 42,
   "n_random_sets": 10000,
   "NHANES_2015_2018": {
+    "role": "primary independent patient-cohort validation",
     "participants_with_mapped_prescription": 7669,
     "participants_on_2plus_mapped_drugs": 5301,
     "unique_concurrent_pairs": 17229,
-    "candidate_alertable_pairs": 1133,
-    "top10_watchlist_coverage_alertable_pct": 70.0,
+    "co_exposed_candidate_network_pairs": 1133,
+    "top10_watchlist_coverage_candidate_network_pairs_pct": 70.0,
     "top10_random_null_mean_pct": 18.9,
     "empirical_p": 0.0000999900009999,
     "top10_patient_exposure_pct": 45.2
   },
   "MIMIC_IV_demo_v2_2": {
+    "role": "secondary inpatient transport/sensitivity analysis; intentionally small public demo",
     "patients": 100,
     "admissions": 250,
     "unique_temporally_overlapping_pairs": 14677,
-    "candidate_alertable_overlapping_pairs": 704,
-    "top10_watchlist_coverage_alertable_pct": 68.0,
+    "co_exposed_candidate_network_pairs": 704,
+    "top10_watchlist_coverage_candidate_network_pairs_pct": 68.0,
     "top10_random_null_mean_pct": 18.9,
-    "empirical_p": 0.0000999900009999,
-    "role": "inpatient transport/sensitivity cohort; intentionally small public demo"
+    "empirical_p": 0.0000999900009999
   },
-  "interpretation": "Patient data are used only after the degree-ranked watchlist is fixed. The validation tests transport of drug-level burden concentration into real medication co-exposure, not patient-specific harm or causal clinical outcomes."
+  "ONC_patient_realization": {
+    "high_priority_pairs_denominator": 1150,
+    "non_interruptive_pairs_denominator_fully_expanded_mapping": 2025,
+    "NHANES_non_interruptive_vs_high_priority_realization_ratio": 6.9,
+    "MIMIC_non_interruptive_vs_high_priority_realization_ratio": 3.7,
+    "watchlist_specific_realized_pair_label_permutation_p": {
+      "NHANES": 0.26,
+      "MIMIC_IV_demo": 0.80
+    },
+    "interpretation": "Global ONC realization rates differ strongly, but the watchlist-specific ONC contrast on realized pairs is underpowered/non-significant and is not claimed as replicated."
+  },
+  "interpretation": "Patient data are used only after the degree-ranked watchlist is fixed. Candidate-network co-exposure tests transport of structural burden concentration into medication use; it is not a confirmed-interaction label, fired-alert measure, patient-specific risk score, or causal clinical outcome."
 }
