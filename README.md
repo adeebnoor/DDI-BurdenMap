@@ -2,70 +2,91 @@
 
 # DDI-BurdenMap
 
-### Mapping where drug-drug interaction burden concentrates
+### Hub structure in drug-drug interaction burden — validated in real medication use
 
-**A severity-, mechanism-, and patient-cohort-aware analysis of DDI burden concentration.**
+**Mechanism-, severity-, expert-consensus-, and patient-cohort-aware analysis.**
 
 [![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](requirements.txt)
-[![Reproducibility](https://img.shields.io/badge/reproducibility-fixed%20seeds-2E8B57)](code/)
-[![Patient validation](https://img.shields.io/badge/patient%20validation-NHANES%20%2B%20MIMIC--IV-0E7490)](#patient-cohort-validation)
+[![Primary patient validation](https://img.shields.io/badge/primary%20validation-NHANES-0E7490)](#patient-cohort-validation)
+[![Inpatient sensitivity](https://img.shields.io/badge/inpatient%20sensitivity-MIMIC--IV%20Demo-6B7280)](#patient-cohort-validation)
 [![DDInter boundary](https://img.shields.io/badge/DDInter-CC%20BY--NC--SA%204.0-important)](DATA_LICENSE_NOTICE.md)
 
-*Companion reproducibility repository for:*  
-**Hub drugs concentrate drug-drug interaction burden across curated networks and real prescribing**
+*Reproducibility repository for:*  
+**Hub drugs concentrate drug–drug interaction burden across curated networks and real prescribing: a mechanism-aware network analysis with patient-cohort validation**
 
 </div>
 
 ---
 
-## The question
+## What this study tests
 
-Most DDI research asks whether a **pair** of drugs interacts. DDI-BurdenMap asks a complementary systems-level question:
+Most DDI work is pair-centered. This study asks a complementary systems question:
 
-> **Is interaction burden spread broadly across drugs, or does it concentrate around a relatively small set of hub drugs, and does that structure transport into real medication use?**
+> **Is candidate DDI burden concentrated on a manageable minority of drugs, and does that fixed drug-level structure transport into real medication use?**
 
-## Results at a glance
+The hub ranking is created **before** patient data are introduced. Patient cohorts are validation/transport layers, not inputs to the ranking.
 
-| Evidence layer | Main result |
-|---|---|
-| Candidate network | 1,114 drugs; 16,316 pairs; top 10% carry 42.3% of endpoints; Gini 0.637 |
-| Construction-reference network | top 10% carry 45.1% of endpoints; Gini 0.654 |
-| Independent DDInter export | 160,235 pairs; top 10% carry 31.6% of endpoints; Gini 0.503 |
-| NHANES 2015-2018 | 7,669 medication users; top-decile watchlist covers 70.0% of candidate-alertable co-taken pairs vs 18.9% random null |
-| MIMIC-IV demo v2.2 | 100 patients / 250 admissions; top-decile watchlist covers 68.0% of candidate-alertable temporally overlapping pairs vs 18.9% random null |
+## Evidence stack
 
-**Interpretation:** degree is a transparent workload/connectivity signal. It is **not** a patient-level risk score and is **not** a stand-alone severity score.
+| Evidence layer | Main result | Role |
+|---|---|---|
+| Filtered candidate network | 1,114 drugs; 16,316 pairs; top 10% carry 42.3% of endpoints; Gini 0.637 | Discovery |
+| Construction-reference network | top 10% carry 45.1%; Gini 0.654 | Internal consistency |
+| Independent DDInter export | 160,235 pairs; top 10% carry 31.6%; Gini 0.503 | Independent structural replication |
+| ONC expert-consensus lists | 77.4% Non-Interruptive vs 39.5% High-Priority coverage at top decile | Clinical-relevance benchmark |
+| NHANES 2015–2018 | 7,669 medication users; 70.0% of co-taken candidate-network pairs covered vs 18.9% random null | **Primary independent patient validation** |
+| MIMIC-IV Demo v2.2 | 100 patients / 250 admissions; 68.0% of temporally overlapping candidate-network pairs covered vs 18.9% null | Secondary inpatient transport/sensitivity |
+
+**Interpretation boundary:** degree is a workload/connectivity and prioritization signal. It is **not** a confirmed-interaction label, patient-level risk score, stand-alone severity score, fired-alert measure, or validated suppression rule.
 
 <p align="center">
-  <img src="assets/concentration_curve.svg" width="820" alt="Concentration summary for DDI burden across candidate, reference and DDInter networks">
+  <img src="assets/concentration_curve.svg" width="820" alt="Concentration summary across candidate, reference and DDInter networks">
 </p>
 
 ## Patient-cohort validation
 
-The Frontiers resubmission adds patient-level transport validation that is fully separate from the databases used to build the hub ranking.
+### NHANES 2015–2018 — primary validation
 
-### Ambulatory: NHANES 2015-2018
+`code/nhanes_cohort_validation.py` evaluates the fixed watchlist in CDC/NCHS prescription-medication data. The analytical cohort contains **7,669 participants with at least one mapped prescription**, including 5,301 using two or more mapped drugs.
 
-`code/nhanes_cohort_validation.py` uses the CDC/NCHS prescription-medication files for 2015-2016 and 2017-2018. The analytical cohort contains **7,669 participants with at least one mapped prescription** and 5,301 with two or more mapped drugs. At the 10% watchlist, **70.0%** of candidate-alertable co-taken pairs are covered versus a **18.9%** random-watchlist null (10,000 draws; seed 42; empirical P < 1e-4).
+At the 10% watchlist, **70.0% of co-taken candidate-network pairs** are covered versus an **18.9%** random-watchlist null (10,000 draws; seed 42; empirical P < 1e-4).
 
-### Inpatient sensitivity/transport cohort: MIMIC-IV demo v2.2
+### MIMIC-IV Demo v2.2 — secondary inpatient sensitivity analysis
 
-`code/mimic_cohort_validation.py` evaluates true temporal overlap of prescription start/stop windows within hospitalization. The public demo contains **100 de-identified patients and 250 admissions**. At the 10% watchlist, **68.0%** of candidate-alertable temporally overlapping pairs are covered versus a **18.9%** random-watchlist null (10,000 draws; seed 42; empirical P < 1e-4).
+`code/mimic_cohort_validation.py` requires temporal overlap of prescription windows within admission. The open demo contains **100 de-identified patients and 250 admissions**.
 
-Because the MIMIC-IV demo is intentionally small, it is treated as an **inpatient transport/sensitivity cohort**, not as a large definitive clinical-effectiveness cohort. The primary patient-level validation is NHANES. See [`code/README_cohort_validation.md`](code/README_cohort_validation.md).
+At the 10% watchlist, **68.0% of temporally overlapping candidate-network pairs** are covered versus an **18.9%** random-watchlist null (empirical P < 1e-4).
 
-## Independent DDInter validation
+Because the demo is intentionally small, the manuscript treats it as a **transport/sensitivity analysis**, not as a second large definitive clinical cohort.
 
-DDInter source CSVs and the processed pair-level derivative are **not committed** because DDInter states a **CC BY-NC-SA 4.0** license. Reconstruct the analytical network locally from its public category downloads:
+See [`code/README_cohort_validation.md`](code/README_cohort_validation.md).
+
+## ONC expert-consensus analyses
+
+Two ONC analyses use two mapped representations from the same pinned upstream PDDI repository commit:
+
+- **Fig. 7 knowledge-base coverage:** class-annotated formatted Non-Interruptive representation → 1,895 candidate-network pairs after correction/restriction.
+- **Fig. 8b patient realization:** fully expanded mapped Non-Interruptive representation → 2,025 candidate-network pairs after the corresponding correction/restriction.
+
+These denominators are analysis-specific and are not compared directly. `code/prepare_onc_from_public.py` retrieves both representations plus the High-Priority list from pinned upstream commit `8199ee66b60bcb337f777889a210dd0d72a96e8f`.
+
+Across patient cohorts, Non-Interruptive pairs are co-prescribed **6.9×** more often than High-Priority pairs in NHANES and **3.7×** more often in MIMIC-IV Demo. The **watchlist-specific ONC contrast among realized pairs was underpowered/non-significant** (P=0.26 and P=0.80) and is not claimed as replicated.
+
+## Independent DDInter replication
+
+DDInter source CSVs and the processed pair-level derivative are **not committed** because DDInter states a **CC BY-NC-SA 4.0** license.
 
 ```bash
-python code/prepare_ddinter_from_public.py --download --raw-dir data/raw_ddinter --output data/ddinter2_unique.csv
-python code/ddinter_severity_analysis.py data/ddinter2_unique.csv out/ddinter_severity_results.json
+python code/prepare_ddinter_from_public.py --download \
+  --raw-dir data/raw_ddinter --output data/ddinter2_unique.csv
+
+python code/ddinter_severity_analysis.py \
+  data/ddinter2_unique.csv out/ddinter_severity_results.json
 ```
 
 See [`DATA_LICENSE_NOTICE.md`](DATA_LICENSE_NOTICE.md).
 
-## Reproduce the analyses
+## Reproducibility
 
 ```bash
 git clone https://github.com/adeebnoor/DDI-BurdenMap.git
@@ -75,29 +96,22 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-The two redistributable fixed inputs used for the candidate/reference analyses are supplied in the manuscript's redistribution-safe reproducibility archive. Patient-cohort raw files are downloaded from their source custodians rather than redistributed here. The fixed name-to-DrugBank mapping used for the submitted cohort analyses is included in that archive.
+The submission reproducibility archive contains the two redistributable fixed network inputs and the fixed name-to-DrugBank mapping used by the patient analyses. Raw NHANES, MIMIC-IV, DDInter and ONC mapped source files are obtained from their custodians rather than re-hosted here.
 
-## Repository map
-
-```text
-DDI-BurdenMap/
-├── assets/              # project-facing scientific visuals
-├── code/                # topology, DDInter and patient-cohort scripts
-├── data/README.md       # input provenance and licensing notes
-├── out/                 # aggregate machine-readable outputs
-├── CITATION.cff
-├── .zenodo.json
-├── requirements.txt
-└── DATA_LICENSE_NOTICE.md
-```
+Aggregate result JSONs are mirrored in `out/`; cohort and ONC scripts are under `code/`.
 
 ## Reproducibility design
 
-Random procedures use fixed seeds recorded in the scripts. The candidate-network ranking uses pair membership only; pharmacological labels and patient data do not enter hub ranking. Patient cohorts are used only after the watchlist has been fixed.
+- Candidate-network ranking is fixed before patient data are introduced.
+- Random procedures use fixed seed 42 where applicable.
+- Expert-label permutation and random-watchlist nulls are explicit.
+- MIMIC-IV Demo is labeled as a sensitivity/transport analysis.
+- The negative patient-level ONC watchlist contrast is retained rather than hidden.
+- Candidate-network co-exposure is not equated with a confirmed DDI or an actual clinical alert.
 
 ## Citation
 
-Until the journal article receives its final bibliographic citation, use [`CITATION.cff`](CITATION.cff). A Zenodo DOI can be added after a versioned release is archived; no DOI is invented here.
+Until the journal article receives its final bibliographic citation, use [`CITATION.cff`](CITATION.cff). No Zenodo DOI is claimed unless one is actually minted.
 
 ## Author
 
@@ -109,6 +123,6 @@ King Abdulaziz University, Jeddah, Saudi Arabia
 
 <div align="center">
 
-**DDI-BurdenMap - from pair lists to an auditable map of interaction burden.**
+**DDI-BurdenMap — from pair lists to an auditable, patient-grounded map of interaction burden.**
 
 </div>
