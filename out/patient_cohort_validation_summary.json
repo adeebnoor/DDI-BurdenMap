@@ -1,27 +1,35 @@
 {
-  "analysis_version": "Frontiers resubmission validation — final audit 2026-08-22",
+  "analysis_version": "Pharmaceutics submission framing — final audit 2026-09-02",
   "seed": 42,
   "n_random_sets": 10000,
+  "watchlist_definition": "degree-ranked candidate-network drugs; fixed before patient-data analysis",
+  "candidate_edge_baseline_top10_pct": 65.0,
   "NHANES_2015_2018": {
-    "role": "primary independent patient-cohort validation",
+    "role": "primary ambulatory medication-exposure transport test",
     "participants_with_mapped_prescription": 7669,
     "participants_on_2plus_mapped_drugs": 5301,
-    "unique_concurrent_pairs": 17229,
+    "rankable_observed_pairs": 17229,
+    "top10_primary_pair_coverage_pct": 29.2,
+    "top10_primary_random_null_mean_pct": 16.6,
+    "top10_primary_null_95_pct": [10.8, 22.8],
+    "top10_primary_empirical_p": 0.00029997000299970003,
     "co_exposed_candidate_network_pairs": 1133,
-    "top10_watchlist_coverage_candidate_network_pairs_pct": 70.0,
-    "top10_random_null_mean_pct": 18.9,
-    "empirical_p": 0.0000999900009999,
+    "top10_candidate_edge_coverage_pct_secondary": 70.0,
     "top10_patient_exposure_pct": 45.2
   },
   "MIMIC_IV_demo_v2_2": {
-    "role": "secondary inpatient transport/sensitivity analysis; intentionally small public demo",
+    "role": "secondary inpatient prescription-order transport/sensitivity analysis; intentionally small public demo",
     "patients": 100,
     "admissions": 250,
-    "unique_temporally_overlapping_pairs": 14677,
+    "unique_mapped_overlapping_pairs": 14677,
+    "rankable_overlapping_pairs": 9270,
+    "top10_primary_pair_coverage_pct": 30.8,
+    "top10_primary_random_null_mean_pct": 19.0,
+    "top10_primary_null_95_pct": [11.7, 26.9],
+    "top10_primary_empirical_p": 0.0017998200179982,
     "co_exposed_candidate_network_pairs": 704,
-    "top10_watchlist_coverage_candidate_network_pairs_pct": 68.0,
-    "top10_random_null_mean_pct": 18.9,
-    "empirical_p": 0.0000999900009999
+    "top10_candidate_edge_coverage_pct_secondary": 68.0,
+    "top10_patients_with_watchlist_drug_in_overlap_pct": 95.0
   },
   "ONC_patient_realization": {
     "high_priority_pairs_denominator": 1150,
@@ -32,7 +40,7 @@
       "NHANES": 0.26,
       "MIMIC_IV_demo": 0.80
     },
-    "interpretation": "Global ONC realization rates differ strongly, but the watchlist-specific ONC contrast on realized pairs is underpowered/non-significant and is not claimed as replicated."
+    "interpretation": "Global ONC realization rates differ strongly, but the watchlist-specific ONC contrast among realized pairs is underpowered/non-significant and is not claimed as replicated."
   },
-  "interpretation": "Patient data are used only after the degree-ranked watchlist is fixed. Candidate-network co-exposure tests transport of structural burden concentration into medication use; it is not a confirmed-interaction label, fired-alert measure, patient-specific risk score, or causal clinical outcome."
+  "interpretation": "The primary patient-transport test uses all observed pairs whose drugs are rankable in the candidate network, without conditioning on candidate-edge membership. Candidate-edge coverage is secondary operational reach because the top-decile watchlist already covers 65.0% of all candidate-network edges before cohort data are introduced. Neither analysis establishes confirmed interaction status, clinical severity, patient-specific risk, fired alerts, or clinical outcomes."
 }

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="500" viewBox="0 0 1100 500" role="img" aria-labelledby="title desc">
+<title id="title">Primary medication-exposure transport test</title>
+<desc id="desc">At the frozen top-decile watchlist, NHANES observed pair coverage is 29.2 percent versus a 16.6 percent random-set mean, and MIMIC-IV Demo observed pair coverage is 30.8 percent versus 19.0 percent. Candidate-edge coverage of 70 and 68 percent is secondary operational reach because the watchlist covers 65 percent of all candidate edges before cohort data.</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071a2a"/><stop offset="1" stop-color="#12394b"/></linearGradient>
+  <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="8" flood-opacity=".22"/></filter>
+</defs>
+<rect width="1100" height="500" rx="28" fill="url(#bg)"/>
+<text x="55" y="62" fill="#ffffff" font-family="Arial,Helvetica,sans-serif" font-size="30" font-weight="700">Frozen watchlist → observed medication exposure</text>
+<text x="55" y="98" fill="#b8d3dc" font-family="Arial,Helvetica,sans-serif" font-size="17">Primary H3: all observed pairs whose two drugs are rankable; candidate-edge membership is not required</text>
+<g filter="url(#shadow)">
+  <rect x="55" y="135" width="475" height="225" rx="20" fill="#102f43" stroke="#2d6075"/>
+  <rect x="570" y="135" width="475" height="225" rx="20" fill="#102f43" stroke="#2d6075"/>
+</g>
+<text x="88" y="178" fill="#ffffff" font-family="Arial" font-size="23" font-weight="700">NHANES 2015–2018</text>
+<text x="88" y="205" fill="#9fc5d0" font-family="Arial" font-size="14">17,229 rankable observed co-taken pairs</text>
+<rect x="88" y="235" width="350" height="30" rx="8" fill="#173b4e"/>
+<rect x="88" y="235" width="204" height="30" rx="8" fill="#36a3b5"/>
+<text x="450" y="257" text-anchor="end" fill="#ffffff" font-family="Arial" font-size="18" font-weight="700">29.2%</text>
+<rect x="88" y="282" width="350" height="24" rx="7" fill="#173b4e"/>
+<rect x="88" y="282" width="116" height="24" rx="7" fill="#7c94a1"/>
+<text x="450" y="300" text-anchor="end" fill="#c6d5dc" font-family="Arial" font-size="15">random mean 16.6%</text>
+<text x="88" y="337" fill="#f4c17f" font-family="Arial" font-size="14" font-weight="700">empirical P = 3.0×10⁻⁴</text>
+<text x="603" y="178" fill="#ffffff" font-family="Arial" font-size="23" font-weight="700">MIMIC-IV Demo v2.2</text>
+<text x="603" y="205" fill="#9fc5d0" font-family="Arial" font-size="14">9,270 rankable overlapping prescription-order pairs</text>
+<rect x="603" y="235" width="350" height="30" rx="8" fill="#173b4e"/>
+<rect x="603" y="235" width="216" height="30" rx="8" fill="#36a3b5"/>
+<text x="1015" y="257" text-anchor="end" fill="#ffffff" font-family="Arial" font-size="18" font-weight="700">30.8%</text>
+<rect x="603" y="282" width="350" height="24" rx="7" fill="#173b4e"/>
+<rect x="603" y="282" width="133" height="24" rx="7" fill="#7c94a1"/>
+<text x="1015" y="300" text-anchor="end" fill="#c6d5dc" font-family="Arial" font-size="15">random mean 19.0%</text>
+<text x="603" y="337" fill="#f4c17f" font-family="Arial" font-size="14" font-weight="700">empirical P = 0.0018</text>
+<rect x="55" y="390" width="990" height="72" rx="18" fill="#0c2638" stroke="#31586b"/>
+<text x="80" y="420" fill="#ffffff" font-family="Arial" font-size="16" font-weight="700">Important boundary</text>
+<text x="80" y="445" fill="#b8d3dc" font-family="Arial" font-size="14">70.0% / 68.0% candidate-edge coverage is secondary operational reach: the same top-decile watchlist already covers 65.0% of all candidate edges before patient data.</text>
+<text x="1030" y="482" text-anchor="end" fill="#7195a5" font-family="Arial" font-size="12">DDI-BurdenMap · Pharmaceutics framing lock</text>
+</svg>

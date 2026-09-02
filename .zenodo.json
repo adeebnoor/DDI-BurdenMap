@@ -1,20 +1,23 @@
 {
-  "title": "DDI-BurdenMap: reproducible mapping of drug-drug interaction burden across candidate and curated networks",
+  "title": "DDI-BurdenMap: drug-level concentration of drug-drug interaction burden across pharmacokinetic mechanisms and medication exposure",
   "upload_type": "software",
-  "description": "Reproducibility code, redistributable analytical inputs, aggregate outputs, figures, and manuscript materials for DDI-BurdenMap, a severity- and mechanism-aware network analysis of where drug-drug interaction burden concentrates. DDInter source and processed pair-level files are not redistributed; the included preparation script reconstructs the analytical edge list locally from DDInter public downloads.",
+  "description": "Reproducibility code, public-facing documentation, aggregate outputs, and reconstruction scripts for DDI-BurdenMap. The study tests whether drug-drug interaction burden is concentrated at the drug level, persists within pharmacokinetic mechanism strata, independently replicates in DDInter, and remains overrepresented in observed medication pairings after the drug ranking is frozen. The submission reproducibility archive is the version of record for the exact redistributable fixed inputs and outputs. Third-party source datasets are not re-hosted when redistribution is constrained or unnecessary.",
   "creators": [
     {
       "name": "Noor, Adeeb",
       "affiliation": "King Abdulaziz University"
     }
   ],
-  "version": "1.0.0",
+  "version": "1.1.0",
   "keywords": [
     "drug-drug interactions",
-    "medication safety",
+    "pharmacokinetics",
     "network pharmacology",
-    "pharmacovigilance",
-    "clinical decision support",
+    "polypharmacy",
+    "medication exposure",
+    "DDInter",
+    "NHANES",
+    "MIMIC-IV",
     "reproducibility"
   ],
   "access_right": "open",
