@@ -8,7 +8,8 @@
     "role": "primary ambulatory medication-exposure transport test",
     "participants_with_mapped_prescription": 7669,
     "participants_on_2plus_mapped_drugs": 5301,
-    "rankable_observed_pairs": 17229,
+    "observed_co_taken_mapped_pairs": 17229,
+    "primary_denominator_note": "All observed co-taken pairs formed from DrugBank-mapped medications; candidate-network node membership is not required for both endpoints and candidate-edge membership is not required.",
     "top10_primary_pair_coverage_pct": 29.2,
     "top10_primary_random_null_mean_pct": 16.6,
     "top10_primary_null_95_pct": [10.8, 22.8],
@@ -22,7 +23,8 @@
     "patients": 100,
     "admissions": 250,
     "unique_mapped_overlapping_pairs": 14677,
-    "rankable_overlapping_pairs": 9270,
+    "overlapping_pairs_with_both_drugs_in_candidate_universe": 9270,
+    "primary_denominator_note": "Temporal-overlap pairs are restricted to pairs whose two drugs occur in the candidate-network drug universe; the observed pair itself need not be a candidate-network edge.",
     "top10_primary_pair_coverage_pct": 30.8,
     "top10_primary_random_null_mean_pct": 19.0,
     "top10_primary_null_95_pct": [11.7, 26.9],
@@ -42,5 +44,5 @@
     },
     "interpretation": "Global ONC realization rates differ strongly, but the watchlist-specific ONC contrast among realized pairs is underpowered/non-significant and is not claimed as replicated."
   },
-  "interpretation": "The primary patient-transport test uses all observed pairs whose drugs are rankable in the candidate network, without conditioning on candidate-edge membership. Candidate-edge coverage is secondary operational reach because the top-decile watchlist already covers 65.0% of all candidate-network edges before cohort data are introduced. Neither analysis establishes confirmed interaction status, clinical severity, patient-specific risk, fired alerts, or clinical outcomes."
+  "interpretation": "The primary patient-transport test uses cohort-specific observed-pair denominators with a frozen watchlist and a cohort-specific random equal-size drug-set null. NHANES includes all observed DrugBank-mapped co-taken pairs; MIMIC-IV Demo restricts temporal-overlap pairs to those whose two drugs are in the candidate-network drug universe. The observed pair itself need not be a candidate-network edge in either cohort. Candidate-edge coverage is secondary operational reach because the top-decile watchlist already covers 65.0% of all candidate-network edges before cohort data are introduced. Neither analysis establishes confirmed interaction status, clinical severity, patient-specific risk, fired alerts, or clinical outcomes."
 }

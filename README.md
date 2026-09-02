@@ -35,8 +35,8 @@ The drug ranking is derived **before** NHANES or MIMIC-IV data are introduced. P
 | Construction-reference network | top decile carries 45.1%; Gini 0.654 | Internal structural consistency |
 | Independent DDInter export | 160,235 pairs; top decile carries 31.6%; Gini 0.503 | **Independent structural replication** |
 | PK mechanism strata | top-decile shares: metabolism inhibition 43.1%; induction 51.6%; protein binding 44.2%; transporter inhibition 39.6% | Mechanism-aware persistence |
-| NHANES 2015–2018 | frozen top-decile covers 29.2% of 17,229 rankable observed pairs vs 16.6% random-set mean; P = 3.0×10⁻⁴ | **Primary ambulatory transport test** |
-| MIMIC-IV Demo v2.2 | frozen top-decile covers 30.8% of 9,270 rankable overlapping pairs vs 19.0% random-set mean; P = 0.0018 | Secondary inpatient transport/sensitivity |
+| NHANES 2015–2018 | frozen top-decile covers 29.2% of 17,229 observed DrugBank-mapped co-taken pairs vs 16.6% random-set mean; P = 3.0×10⁻⁴ | **Primary ambulatory transport test** |
+| MIMIC-IV Demo v2.2 | frozen top-decile covers 30.8% of 9,270 overlapping pairs with both drugs in the candidate-network drug universe vs 19.0% random-set mean; P = 0.0018 | Secondary inpatient transport/sensitivity |
 | Candidate-edge operational reach | 70.0% NHANES; 68.0% MIMIC-IV, while the same watchlist covers 65.0% of all candidate edges before cohort data | Operational reach, **not** independent validation |
 | ONC expert-consensus analyses | Non-Interruptive pairs are realized more often globally; watchlist-specific realized-pair contrasts are non-significant | Burden/priority separation and negative-result retention |
 
@@ -54,7 +54,9 @@ The drug ranking is derived **before** NHANES or MIMIC-IV data are introduced. P
 
 A degree-ranked top-decile watchlist mechanically covers many edges in the network from which it was derived. In this dataset it covers **65.0% of all candidate-network edges before any patient data are introduced**. Therefore, the larger 70.0%/68.0% values among observed candidate-network edges are useful measures of practical reach, but they are not treated as an independent null test.
 
-The principal H3 analysis instead asks whether the frozen watchlist is overrepresented among **all observed medication pairs whose drugs are rankable in the candidate network**, whether or not the observed pair is itself a candidate edge. This yields:
+The principal H3 analysis is cohort-specific while preserving the same frozen watchlist and random-set logic. In **NHANES**, the denominator is all **17,229 observed co-taken pairs formed from DrugBank-mapped medications**; the observed pair need not be a candidate-network edge and its endpoints need not both be candidate-network nodes. In **MIMIC-IV Demo**, the denominator is **9,270 temporally overlapping prescription-order pairs whose two drugs are in the candidate-network drug universe**; again, the observed pair itself need not be a candidate-network edge. Each cohort is compared only with its own random equal-size drug-set null.
+
+This yields:
 
 - **NHANES:** 29.2% coverage vs 16.6% random equal-size drug-set mean (95% interval 10.8–22.8%; 10,000 draws; seed 42; empirical P = 3.0×10⁻⁴).
 - **MIMIC-IV Demo:** 30.8% coverage vs 19.0% random mean (95% interval 11.7–26.9%; empirical P = 0.0018).
@@ -65,11 +67,11 @@ The corresponding 5%, 10%, and 20% watchlist analyses are retained in the submis
 
 ### NHANES 2015–2018 — primary ambulatory transport
 
-`code/nhanes_cohort_validation.py` analyzes CDC/NCHS prescription-medication data after the degree ranking is frozen. The analytical cohort contains **7,669 participants with at least one mapped prescription**; 5,301 use two or more mapped drugs. The primary denominator contains **17,229 rankable observed co-taken pairs**.
+`code/nhanes_cohort_validation.py` analyzes CDC/NCHS prescription-medication data after the degree ranking is frozen. The analytical cohort contains **7,669 participants with at least one mapped prescription**; 5,301 use two or more mapped drugs. The primary denominator contains **17,229 observed DrugBank-mapped co-taken pairs**.
 
 ### MIMIC-IV Demo v2.2 — secondary inpatient transport/sensitivity
 
-`code/mimic_cohort_validation.py` uses temporal overlap of **prescription-order start/stop windows** within admission. The open demo contains **100 de-identified patients and 250 admissions**. Temporal overlap produces 14,677 unique mapped pairs; **9,270 have both drugs rankable** in the candidate network.
+`code/mimic_cohort_validation.py` uses temporal overlap of **prescription-order start/stop windows** within admission. The open demo contains **100 de-identified patients and 250 admissions**. Temporal overlap produces 14,677 unique mapped pairs; **9,270 have both drugs in the candidate-network drug universe** and form the primary MIMIC denominator.
 
 The demo is intentionally small and is treated as a transport/sensitivity analysis, not as a second definitive clinical-effectiveness cohort. No administration-event, concentration, outcome, or alert-log claim is made.
 
@@ -116,6 +118,7 @@ The **submission reproducibility archive is the version of record** for the exac
 Key design choices:
 
 - candidate-network ranking fixed before cohort analysis;
+- cohort-specific observed-pair denominators documented explicitly;
 - 10,000 random equal-size drug-set nulls with documented seed 42;
 - explicit 5%/10%/20% watchlist sensitivity;
 - independent DDInter replication;
