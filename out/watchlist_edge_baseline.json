@@ -1,0 +1,21 @@
+{
+  "n_drugs": 1114,
+  "n_edges": 16316,
+  "coverage": {
+    "5%": {
+      "k_drugs": 56,
+      "covered_edges": 7502,
+      "covered_pct": 45.97940671733268
+    },
+    "10%": {
+      "k_drugs": 111,
+      "covered_edges": 10609,
+      "covered_pct": 65.02206423142927
+    },
+    "20%": {
+      "k_drugs": 223,
+      "covered_edges": 14032,
+      "covered_pct": 86.00147094876195
+    }
+  }
+}
